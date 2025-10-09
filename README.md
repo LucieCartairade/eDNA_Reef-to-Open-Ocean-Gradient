@@ -103,7 +103,7 @@ Tax_table <- reshape2::acast(Tax_melt, value.var = "relative_biomass", Taxon~Sam
 ```
 
 ##  Generating Figures from the paper
-### Figure 1: 
+### Figure 1: Variation in sequencing read counts (A), OTU richness (B), and species richness (C) across the three offshore transects from Moorea’s outer reef to the open ocean.
 <p align="center">
   <img src="Figures/Figure1.PNG" alt="Figure 1" class="center" width="75%"/>
 </p>
@@ -140,7 +140,7 @@ p_gam_Species <- GAM_model_plot(data = counted_Tab_Species, k = 5, y = "n", ylab
 ggsave(path = Images_path, filename = "Figure1.pdf", width = 10, height = 10)
 ```
 
-### Figure 2: 
+### Figure 2: Proportional composition of fish reads by habitat type at each sampling station along the three radial transects extending from the outer reef slope of Moorea to offshore waters.
 <p align="center">
   <img src="Figures/Figure2.PNG" alt="Figure 2" class="center" width="75%"/>
 </p>
