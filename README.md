@@ -269,3 +269,31 @@ ggplot() +
 
 ggsave(path = Images_path, file = "Figure2.pdf", height = 9, width = 9, dpi = 300)
 ```
+
+### Figure 2: Principal Coordinates Analysis on Jaccard matrix distance
+<p align="center">
+  <img src="Figures/Figure3.PNG" alt="Figure 3" class="center" width="75%"/>
+</p>
+
+```r
+dist.jc <- betapart::beta.pair(t(ifelse(Tax_table != 0 , 1, 0)), index.family="jaccard")
+
+pcoa <- cmdscale(dist.jc$beta.jac, eig = T, add = T)
+position <- pcoa$points[,c(1,2)]
+colnames(position) <- c("Dim1","Dim2")
+
+percent_explained <- round(100 * pcoa$eig / sum(pcoa$eig), digits = 1)
+labs <- c(glue::glue("PCo 1 ({percent_explained[1]}%)"), glue::glue("PCo 2 ({percent_explained[2]}%)"))
+
+pcoa_data <- merge(as.data.frame(position), as.data.frame(Tax_melt), by.x = 0, by.y = "Sample.ID")
+
+ggplot(data = pcoa_data, aes(x = Dim1, y = Dim2)) +
+  geom_point(aes(color = Distance.to.Reef..Nautic.Miles.,
+                 shape = Sampling.Site), size = 2) +
+  ggokabeito::scale_color_okabe_ito(name = "Distance to the reef\n(in nautical miles)") +
+  scale_shape_discrete(name = "Radial") +
+  labs(x = labs[1], y = labs[2]) +
+  coord_equal()
+
+ggsave(file = paste0(Images_path, "Figure3_PCoA_Jaccard.pdf"), width = 8, height = 6)
+```
