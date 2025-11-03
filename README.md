@@ -270,7 +270,7 @@ ggplot() +
 ggsave(path = Images_path, file = "Figure2.pdf", height = 9, width = 9, dpi = 300)
 ```
 
-### Figure 2: Principal Coordinates Analysis on Jaccard matrix distance
+### Figure 3: Principal Coordinates Analysis on Jaccard matrix distance
 <p align="center">
   <img src="Figures/Figure3.PNG" alt="Figure 3" class="center" width="75%"/>
 </p>
